@@ -1,0 +1,26 @@
+{
+  "name": "tts",
+  "version": "1.0.0",
+  "description": "**Seamless, natural Telugu read‑aloud in the browser with smart cleaning and live word highlighting, built entirely with free/open-source components.**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ganesh75-web/TTS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Ganesh75-web/TTS/issues"
+  },
+  "homepage": "https://github.com/Ganesh75-web/TTS#readme",
+  "devDependencies": {
+    "@types/chrome": "^0.1.12",
+    "@types/node": "^24.5.2",
+    "typescript": "^5.9.2"
+  }
+}

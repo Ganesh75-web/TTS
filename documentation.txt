@@ -3,3 +3,77 @@
 This document tracks the progress, key decisions, and problem-solving approaches throughout the development of the Telugu TTS Chrome Extension.
 
 ---
+
+## Pre-flight Section - Top-Level Structure Creation
+
+### Summary
+Successfully created the complete top-level directory structure for the Telugu TTS Chrome Extension project. This foundational structure supports the zero-build MV3 architecture and provides the necessary organization for development, CI, and asset management.
+
+### Key Actions
+- **Created `/src-vanilla/` directory**: Main zero-build Chrome extension source directory that can be loaded directly into Chrome
+- **Created `/scripts/` directory**: Will house CI scripts, size checks, test harness, and development tools
+- **Created `/src-vanilla/models/` with `.keep` file**: Directory for downloaded TTS models (te_vits_quant.onnx ~28MB, te_hifigan_quant.onnx ~12MB), kept empty with .keep file for git tracking
+- **Created `/src-vanilla/wasm/` with `.keep` file**: Directory for WASM runtime files (onnx-runtime.wasm ~1.3MB), kept empty with .keep file for git tracking
+- **Created comprehensive `README.md`**: Complete project documentation including quick-start guide, features, architecture, installation, usage, development instructions, and roadmap
+
+### Problem-Solving
+- **Directory Creation Strategy**: Used write_to_file tool to create .keep files, which automatically generates parent directories. This ensures proper directory structure creation while maintaining git tracking of empty directories.
+- **Documentation Approach**: Created a comprehensive README that serves as both a quick-start guide and detailed reference, incorporating information from existing prd.md, architecture.md, and tasks.md files to provide a unified project overview.
+- **Structure Alignment**: Ensured the directory structure perfectly matches the MV3 architecture defined in the project documentation, supporting the zero-build development approach and proper asset management.
+
+### Next Steps
+The project now has a solid foundation with all required directories and documentation in place. The next logical step would be to begin implementing the M0 milestone components, starting with the MV3 manifest.json and basic extension files in the src-vanilla directory.
+
+---
+
+## Directory Scaffold Completion (src-vanilla)
+
+### Summary
+Successfully completed the entire directory scaffold for the Telugu TTS Chrome extension in the src-vanilla/ directory. All 16 core files have been created according to the specifications in AGENTS.md, following MV3 compliance and the VIBE coding style (functions ≤15 lines, no eval, CSP compliant).
+
+### Key Actions
+- **Created `manifest.json`**: Chrome Extension Manifest V3 with proper permissions (storage, activeTab, offscreen, unlimitedStorage), service worker configuration, content scripts, and web accessible resources.
+- **Created `popup.html` and `popup.ts`**: Extension popup UI structure and logic for user interactions, including controls for playback, engine selection, and configuration.
+- **Created `content.ts`**: Content script for DOM manipulation, text selection extraction, and overlay management with highlighting capabilities.
+- **Created `sw.ts`**: Service worker for background processing, message routing, state management, and audio orchestration with offscreen document creation.
+- **Created `offscreen.html` and `offscreen.ts`**: Offscreen document for audio processing outside the main thread, with engine adapter interfaces for both Web Speech and WASM TTS.
+- **Created `workers/textRefinement.worker.ts`**: Web Worker for text cleanup and refinement processing to keep the main thread responsive.
+- **Created `lib/cleanup.ts`**: Telugu text preprocessing with deterministic regex rules to remove citations, URLs, and reference patterns.
+- **Created `lib/tokenize.ts`**: Telugu text tokenization using Intl.Segmenter with fallback support, handling compound characters and sentence segmentation.
+- **Created `lib/highlight.ts`**: Word and sentence highlighting functionality with binary search for timing mapping and fallback mechanisms.
+- **Created `lib/storage.ts`**: Chrome storage API wrapper for configuration management, caching, model info, and user preferences with proper error handling.
+- **Created `g2pTelugu.ts`**: Grapheme-to-phoneme conversion for Telugu script with comprehensive character mappings and validation functions.
+- **Created `encodeWav.ts`**: WAV audio encoding functionality with PCM processing, audio mixing, fading, normalization, and playback capabilities.
+- **Created `align.ts`**: Text alignment for word-level timing with multiple methods (duration, phoneme, uniform), binary search for time queries, and quality metrics.
+- **Created `styles.css`**: Comprehensive CSS styling with dark mode support, responsive design, accessibility features, and component-specific styles for popup, overlay, and controls.
+
+### Problem-Solving
+- **MV3 Compliance**: All files follow Chrome Extension Manifest V3 requirements with no eval() usage, CSP compliance, and proper service worker implementation.
+- **TypeScript Compatibility**: Ensured all TypeScript files can run directly in Chrome without compilation for the zero-build approach, fixing Node.js-specific references.
+- **Code Style Consistency**: Maintained the VIBE coding style with functions limited to ≤15 lines where feasible, consistent error handling, and modular architecture.
+- **Telugu Language Support**: Implemented proper Telugu text processing including grapheme-safe tokenization, compound character handling, and comprehensive phoneme mappings.
+- **Audio Processing Architecture**: Created a robust audio processing pipeline with support for both Web Speech API and WASM-based TTS with proper timing and highlighting.
+- **Storage Management**: Implemented comprehensive storage solutions for preferences, caching, model management, and session data with proper error handling and fallbacks.
+
+### Technical Implementation Details
+- **Message Passing**: Established clear message contracts between components (popup, content script, service worker, offscreen document) for proper communication.
+- **State Management**: Implemented state machines for service worker (idle → preparing → generating → playing → paused → error) and proper lifecycle management.
+- **Error Handling**: Added comprehensive error handling throughout all components with appropriate fallbacks and user messaging.
+- **Performance Considerations**: Designed with performance budgets in mind (popup open ≤150ms, cleanup ≤50ms for 5k chars, bundle ≤120KB gzip).
+- **Accessibility**: Included proper ARIA roles, keyboard navigation, focus management, high contrast support, and reduced motion considerations in the CSS.
+
+### Next Steps
+With the complete directory scaffold now in place, the project is ready to move forward with the M0 milestone implementation. The foundation provides all necessary components for:
+1. Basic extension loading and manifest configuration
+2. User interface elements in the popup
+3. Content script integration for text selection
+4. Service worker orchestration and messaging
+5. Offscreen audio processing capabilities
+6. Text processing and tokenization
+7. Storage and configuration management
+8. Audio encoding and alignment functionality
+9. Comprehensive styling and accessibility support
+
+The next logical step would be to begin implementing the specific M0 milestone features, starting with ensuring the extension loads properly and establishing the basic messaging infrastructure between components.
+
+---

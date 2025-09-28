@@ -6,17 +6,17 @@ Legend
 - [AI/Human] can be done by either.
 
 Pre-flight
-- [Human] Install prerequisites
+- [x] Install prerequisites
   - Chrome 119+ (or latest stable).
   - Node 18+ and npm 9+.
   - Stable internet for one-time 41 MB model download (optional Pro voice).
   - ≥60 MB free disk space for cached models (WASM Pro voice).
-- [AI/Human] Create repo and baseline configs
+- [x] Create repo and baseline configs
   - Initialize git repo and push to GitHub.
   - Add LICENSE (MIT or Apache-2.0).
   - Add .editorconfig and .prettierrc with printWidth 80.
   - Add .gitignore (node_modules, dist, .DS_Store, etc.).
-- [AI] Create top-level structure
+- [x] Create top-level structure
   - /src-vanilla
   - /scripts (for CI, size checks, test harness)
   - /src-vanilla/models (downloaded on first use; keep empty .keep)
@@ -24,7 +24,7 @@ Pre-flight
   - README.md, prd.md, Architecture.md, tasks.md
 
 Directory scaffold (src-vanilla)
-- [AI]
+- [x]
   - manifest.json
   - popup.html, popup.ts
   - content.ts

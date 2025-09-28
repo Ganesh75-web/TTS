@@ -1,0 +1,47 @@
+{
+    "manifest_version": 3,
+    "name": "Telugu TTS with Word Tracking",
+    "version": "1.0.0",
+    "description": "Text-to-speech for Telugu with intelligent word highlighting and offline Pro voice support",
+    "permissions": [
+        "storage",
+        "activeTab",
+        "offscreen",
+        "unlimitedStorage"
+    ],
+    "host_permissions": [],
+    "background": {
+        "service_worker": "sw.ts"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.ts"
+            ],
+            "css": [
+                "styles.css"
+            ]
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "Telugu TTS"
+    },
+    "offscreen": {
+        "document": "offscreen.html"
+    },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "models/*",
+                "wasm/*"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
+}

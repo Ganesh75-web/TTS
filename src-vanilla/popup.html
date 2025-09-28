@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Telugu TTS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="popup-container">
+        <h1>తెలుగు TTS</h1>
+        <div class="controls">
+            <button id="playBtn" class="control-btn" title="Play">
+                <span class="btn-icon">▶</span>
+            </button>
+            <button id="pauseBtn" class="control-btn" title="Pause">
+                <span class="btn-icon">⏸</span>
+            </button>
+            <button id="stopBtn" class="control-btn" title="Stop">
+                <span class="btn-icon">⏹</span>
+            </button>
+        </div>
+
+        <div class="settings">
+            <label class="setting-item">
+                <input type="checkbox" id="proMode">
+                <span>Pro Voice (Offline)</span>
+            </label>
+            <label class="setting-item">
+                <input type="checkbox" id="wordHighlight" checked>
+                <span>Word Highlighting</span>
+            </label>
+        </div>
+
+        <div class="status">
+            <div id="statusText">Ready</div>
+            <div id="progressBar" class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+        </div>
+
+        <div id="downloadSection" class="hidden">
+            <p>Download Pro voice models for offline use (~40MB)</p>
+            <button id="downloadBtn" class="download-btn">Download Models</button>
+            <div id="downloadProgress" class="hidden">
+                <div class="download-progress-bar">
+                    <div id="downloadFill" class="download-progress-fill"></div>
+                </div>
+                <span id="downloadText">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.ts"></script>
+</body>
+
+</html>
