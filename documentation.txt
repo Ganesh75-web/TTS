@@ -1,0 +1,5 @@
+# Telugu TTS Chrome Extension - Development Log
+
+This document tracks the progress, key decisions, and problem-solving approaches throughout the development of the Telugu TTS Chrome Extension.
+
+---
